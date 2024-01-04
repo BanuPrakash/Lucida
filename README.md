@@ -145,3 +145,27 @@ webpack 5.89.0 compiled successfully in 401 ms
 ```
 
 npm i webpack-dev-server -D
+
+npm i typescript ts-loader -D
+
+===============
+
+Task:
+understand css-loader and style-loader
+
+npm i css-loader style-loader -D
+
+============================
+
+React Demystify:
+
+React.createElement() is just a wrapper for document.createElement()
+
+
+<img src="a.png" width="100px" height="50px">
+
+src, width, height are props 
+
+render()
+
+

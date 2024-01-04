@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (__env, argv) {
     return {
+        devtool: "cheap-module-source-map",
         entry: './src/index.js',
         output: {
             path: path.resolve(__dirname, "dist"),
@@ -15,6 +16,10 @@ module.exports = function (__env, argv) {
                     test: /\.jsx?$/,
                     exclude: /node_modules/,
                     use: 'babel-loader'
+                },
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader'
                 }
             ]
         },
