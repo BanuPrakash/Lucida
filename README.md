@@ -168,4 +168,38 @@ src, width, height are props
 
 render()
 
+=========
+
+* React.createElement()
+* Class Component
+* functional Component ==> 99% of code
+
+class Component
+Object --> can have state and behaivour
+
+
+npx create-react-app usersapp --template typescript
+
+React 18+:
+supports concurrency, fiber based
+import ReactDOM from 'react-dom/client';
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(<App />);
+
+React upto 17 version:
+stack based rendering
+import ReactDOM from 'react-dom';
+ReactDOM.render(<App/>, document.getElementById('root'))
+
+
+-----
+
+RTL --> React Testing Library --> on top of JEST for component testing
+Angular TestBed --> on top of Jasmine
+
+Cypress => E2E testing
+
+npm i cypress -D
 
