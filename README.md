@@ -270,8 +270,269 @@ Client Side Routing
 * react-bootstrap ==> react components using bootstrap
 
 ============================
+useState() Hook
+```
+class UserComponent extends Component {
+  state = {
+    name : 'George',
+    age : 26
+  }
 
-15 min break
+  setName(n) {
+    this.setState({
+      name: n
+    })
+  }
+
+  setAge(a) {
+    this.setState({
+      age: a
+    })
+  }
+}
+
+function UserComponent() {
+  let [name, setName] = useState("George");
+  let [age, setAge] = useState(26);
+}
+
+```
+
+npx create-react-app productapp --template typescript
 
 
+productapp> npm i bootstrap react-bootstrap react-router-dom axios
+
+Making API calls from React:
+* fetch --> available by default in JavaScript
+* axios 
+
+similar to HttpClientModule --> HttpClient service of Angular
+
+https://fakestoreapi.com/products?limit=5
+
+
+Web Vitals ==> FCP ==> first contentful paint
+
+Context Consumer hook: useContext()
+ let value = useContext(ProductContext); // consumer
+
+```
+ class ProductList extends Component {
+
+  render() {
+    <ProductContext.Consumer>
+      {
+        value => {
+          value.products.map(...)
+        }
+      }
+    </ProductContext.consumer>
+  }
+ }
+ ```
+
+ React Component Life Cycle methods
+
+ constructor() ==> render() ==> componentDidMount()
+ initialiszed 20 videos ==> create 20 placeholder
+
+ Make API calls in componentDidMount() ==> update the state
+
+ state changes ==> Updating phase ==> re-render
+
+FCP
+
+----
+
+shouldComponentUpdate()
+
+name
+age
+
+```
+class ParentComponent extends React.Component {
+  state = {
+    name: "Peter",
+    age: 42
+  }
+  
+  render() {
+    console.log("Parent renders!!!");
+    return <div>
+          Name: {this.state.name} <br />
+          Age : {this.state.age} <br />
+      
+          <button onClick={() => this.setState({
+          age: this.state.age + 1
+        })} >
+            Change Age
+      </button>
+         <button onClick={() => this.setState({
+          name: this.state.name + ".."
+        })} >
+            change Name
+      </button>
+      </div>
+  }
+}
+
+
+class NameComponent extends React.Component {
+  render() {
+    console.log("NameComponent renders!!!");
+    return <div>
+          {this.props.name}
+      </div>
+  }
+}
+
+
+class AgeComponent extends React.Component {
+  render() {
+    console.log("AgeComponent renders!!!");
+    return <div>
+          {this.props.age}
+      </div>
+  }
+}
+
+ReactDOM.render(<ParentComponent />, document.getElementById("root"))
+
+```
+
+Solution ==> shouldComponentUpdate
+
+```
+class ParentComponent extends React.Component {
+  state = {
+    name: "Peter",
+    age: 42
+  }
+  
+  render() {
+    console.log("Parent renders!!!");
+    return <div>
+          Name: {this.state.name} <br />
+          Age : {this.state.age} <br />
+      
+          <button onClick={() => this.setState({
+          age: this.state.age + 1
+        })} >
+            Change Age
+      </button>
+         <button onClick={() => this.setState({
+          name: this.state.name + ".."
+        })} >
+            change Name
+      </button>
+      <NameComponent name={this.state.name} /> <br />
+      <AgeComponent age={this.state.age} /> <br />
+      </div>
+  }
+}
+
+class NameComponent extends React.Component {
+  shouldComponentUpdate(newProps, newState) {
+      return this.props.name !== newProps.name
+  }
+  render() {
+    console.log("NameComponent renders!!!");
+    return <div>
+          {this.props.name}
+      </div>
+  }
+}
+
+
+class AgeComponent extends React.Component {
+  shouldComponentUpdate(newProps, newState) {
+      return this.props.age !== newProps.age
+  }
+  render() {
+    console.log("AgeComponent renders!!!");
+    return <div>
+          {this.props.age}
+      </div>
+  }
+ 
+}
+
+ReactDOM.render(<ParentComponent />, document.getElementById("root"))
+```
+
+FunctionalComponent solution to shouldComponentUpdate() is React.memo()
+
+memo() is a HOC ==> Closure
+function memo(comp) {
+  var cache = old props
+  if(newprops compare with cache) {
+    if same return;
+    else return comp(props);
+  }
+}
+
+Example:
+```
+class ParentComponent extends React.Component {
+  state = {
+    name: "Peter",
+    age: 42
+  }
+  
+  render() {
+    console.log("Parent renders!!!");
+    return <div>
+          Name: {this.state.name} <br />
+          Age : {this.state.age} <br />
+      
+          <button onClick={() => this.setState({
+          age: this.state.age + 1
+        })} >
+            Change Age
+      </button>
+         <button onClick={() => this.setState({
+          name: this.state.name + ".."
+        })} >
+            change Name
+      </button>
+      <MemoNameComponent name={this.state.name} /> <br />
+      <MemoAgeCompoent age={this.state.age} /> <br />
+      </div>
+  }
+}
+
+function NameComponent(props) {
+
+    console.log("NameComponent renders!!!");
+    return <div>
+          {props.name}
+      </div>
+}
+
+let MemoNameComponent = React.memo(NameComponent);
+
+
+function AgeComponent(props) {
+ 
+    console.log("AgeComponent renders!!!");
+    return <div>
+          {props.age}
+      </div> 
+}
+
+let MemoAgeCompoent = React.memo(AgeComponent);
+
+ReactDOM.render(<ParentComponent />, document.getElementById("root"))
+```
+
+componentDidMount in functional component:
+useEffect(() => {
+
+},[])
+
+shouldComponentUpdate in functional component --> React.memo()
+
+
+=========
 
