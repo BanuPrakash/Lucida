@@ -5,7 +5,8 @@ type AppProps = {}
 type AppState = {
   users: User[]
 }
-export default class UsersComponent<AppProps, AppState> extends Component {
+export default class UsersComponent extends Component<AppProps, AppState> {
+  // name = "Test";
   state = {
     age: 55,
     users: [

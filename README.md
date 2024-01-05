@@ -203,3 +203,55 @@ Cypress => E2E testing
 
 npm i cypress -D
 
+========
+
+Day 2
+
+Recap:
+
+build tool --> Webpack
+* babel
+* babel-loader
+* babel preset-env/ preset-react
+
+* css-loader and style-loader
+* ts-loader and typescript
+
+HtmlWebpackPlugin --> adding bundles in template file [index.html]
+* source-map
+
+----------
+
+React.createElement()
+ReactDOM.render()
+
+npx create-react-app nameofapp --template typescript
+
+==========================
+
+Component Testing --> Unit Testing 
+npm test
+
+Types of Queries
+https://testing-library.com/docs/queries/about
+
+<button > </button>
+screen.getByRole('button');
+
+ <h1>Users List</h1>
+ screen.getByText(/Users List/i);
+
+<input type="text" placeholder="search by name" />
+screen.getByPlaceholderText("search by name");
+
+let {container} = render(<UsersComponent />);
+container.getElementById("");
+container.querySelectorAll("div");
+container.getElementsByTagName("div");
+
+AAA --> Assemble Action Assert
+
+End2End Testing
+npm i cypress -D
+
+
