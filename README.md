@@ -254,4 +254,24 @@ AAA --> Assemble Action Assert
 End2End Testing
 npm i cypress -D
 
+=================
+
+React Hooks 16.8 version
+* In functional component get all the capabilities of class components
+--> state
+--> life-cycle methods
+
+* React Context--> avoids props drill
+
+* react-router-dom and lazy loading of components
+Client Side Routing
+
+* bootstrap --> CSS Framework
+* react-bootstrap ==> react components using bootstrap
+
+============================
+
+15 min break
+
+
 
