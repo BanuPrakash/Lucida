@@ -524,7 +524,7 @@ function AgeComponent(props) {
 let MemoAgeCompoent = React.memo(AgeComponent);
 
 ReactDOM.render(<ParentComponent />, document.getElementById("root"))
-```
+
 
 componentDidMount in functional component:
 useEffect(() => {
@@ -532,7 +532,72 @@ useEffect(() => {
 },[])
 
 shouldComponentUpdate in functional component --> React.memo()
-
+```
 
 =========
+
+Day 3
+
+1) useState()  
+2) useEffect() 
+3) Context ==> to avoid props drill
+
+---------
+
+Reducers are functions which take "state" and "action" and returns back the new state based on action type.
+
+(state, action) => new_state
+
+action type is of format
+{
+  type: 'INCREMENT',
+  payload: 10
+}
+
+{
+  type: 'ADD_TO_CART',
+  payload: product
+}
+
+{
+  type: 'CLEAR_CART'
+}
+
+4) useReducer() hook used instead of useState() where state mutation depends on
+action type and uses previous state
+
+
+
+```
+let CounterReducer = (state, action) => {
+  switch(action.type) {
+    case 'INCREMENT':
+      return {
+        count: state.count + action.payload
+      }
+    case 'DECREMENT': 
+    return {
+      count: state.count - 1
+    }
+    case 'RESET':
+    return {
+      count: 0
+    }
+  }
+}
+
+let initalState = {
+  count: 0
+}
+let [state, dispatch] = useReducer(CounterReducer, initialState);
+
+dispatch({type: 'INCREMENT', payload: 10});
+
+dispatch({type:'DECREMENT'})
+
+
+
+```
+
+any vs unknown
 
