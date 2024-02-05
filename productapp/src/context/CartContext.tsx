@@ -56,3 +56,7 @@ export default function CartProvider({ children }: AppProps) {
         {children}
     </CartContext.Provider>
 }
+
+export {
+    CartContext
+}

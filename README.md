@@ -601,3 +601,16 @@ dispatch({type:'DECREMENT'})
 
 any vs unknown
 
+Change:
+```
+ function addToCart(id: number) {
+  // get product from ProductContext base on id
+  let cartItem = ...
+        dispatch({ type: 'ADD_TO_CART', payload: cartItem })
+    }
+```
+
+Fontawesome in React
+@fortawesome
+
+npm i @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
