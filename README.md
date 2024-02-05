@@ -614,3 +614,7 @@ Fontawesome in React
 @fortawesome
 
 npm i @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+
+npx json-server --watch data.json --port 1234
+
+sessionStorage.setItem("customer", "banu@lucidatechnologies.com")

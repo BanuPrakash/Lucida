@@ -26,7 +26,6 @@ export default function CartList(props: PropsType) {
       <div className='col-md-2'>
         Amount: {amount}
       </div>
-
     </div>
   )
 }
