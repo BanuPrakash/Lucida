@@ -618,3 +618,164 @@ npm i @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 npx json-server --watch data.json --port 1234
 
 sessionStorage.setItem("customer", "banu@lucidatechnologies.com")
+
+==========
+
+PathParameter:
+path='/details/:id'
+
+http://server.com/details/3
+
+http://server.com/customers/banu@lucidatechnologies.com/orders/2
+
+banu@lucidatechnologies
+2
+
+Query Parameter
+
+http://server.com/products?page=3&size=20
+
+http://server.com/products?category=mobile
+
+
+Handling Form Data in react:
+1) Controlled Components 
+2) Uncontrolled Components
+```
+import axios from 'axios';
+import React, { useState } from 'react'
+import { Container } from 'react-bootstrap';
+
+export default function ProductForm() {
+  let titleRef = useRef();
+  let priceRef = useRef();
+  // description, image, ...
+  function submit() {
+    let product = {
+      title: titleRef.current.value,
+      price: priceRef.current.value
+    }
+    axios.post("http://localhost:1234/products", product).then(response => {
+      console.log("Product added!!")
+    });
+  }
+  return (
+   <Container>
+    <form>
+      Title <input type='text' ref={titleRef}/> <br />
+      Price <input type='number' ref={priceRef}/> <br />
+      <button type="button" onClick={() => submit()}>Add Product</button>
+    </form>
+   </Container>
+  )
+}
+
+```
+1)  https://formik.org/ 
+2) Adobe Spectrum ==> ARIA enabled
+https://react-spectrum.adobe.com/react-spectrum/index.html
+https://opensource.adobe.com/spectrum-web-components/
+
+==================
+
+React Lifecycle methods 
+useEffect(() => {
+
+}, []) ==> componentDidMount
+
+useEffect(() => {
+
+}, [data, value]) ==> componentDidUpdate
+
+
+React.memo() ==> HOC --> Memoization
+
+1) useState
+2) useEffect
+3) useContext
+4) useReducer
+5) useParams
+6) useSearchParams
+7) useMemo()
+
+==========
+
+productapp ---> redux 
+
+=====================
+
+Productapp
+* react-router-dom --> Lazy loading and Suspense
+--> BrowserRouter, Routes, Route, Link
+--> useNavigate(), useParams() and useSearchParams()
+
+* React Context
+--> to avoid passing props thro intermediary components
+--> Provider, Consumer [useContext()]
+--> Application can have multiple contexts
+--> Anti pattern for State Management [ adding behaviour in context] --> CartContext
+
+* react-bootstrap, fortawesome, .... librarires
+
+=========================
+Flux Architecture instead of MVC Architectural pattern
+* Redux
+* Mobx
+* MST
+...
+
+Predicatable State Management using Redux
+* Module for state management can be built seperatley, tested and can be integrated with React, Angular, Server side code like ExpressJS
+* MicroFrontend like Microservices
+* Time travel debugging --> Replay the events
+* Uni-directional flow
+
+state 
+{
+  cart: {
+    cartItems: [...],
+    total: 90923
+  },
+  users: {
+    avatar: 'a.png',
+    displayName: 'Roger
+  }
+}
+
+connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
+
+App becomes a SmartComponent
+
+// state --> redux state in store
+function mapStateToProps(state) {
+  return {
+    products: state.cart.cartItems,
+    grandTotal: state.cart.total,
+    profilePic: state.users.avatar
+  }
+}
+
+props.products
+props.profilePic
+props.grandTotal
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: item => dispatch({type:'ADD_TO_CART', payload: item}),
+    clearCart: () => dispatch({type:'REMOVE_ITEMS'})
+  }
+}
+
+
+props.addToCart({....})
+
+props.clearCart()
+
+===
+
+npx create-react-app reduxapp
+
+reduxapp> npm i redux react-redux
