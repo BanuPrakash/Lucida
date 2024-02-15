@@ -1,10 +1,13 @@
 import React, { useContext } from 'react'
-import { CartContext } from '../context/CartContext'
+
 import { Button, Container } from 'react-bootstrap';
 import CartList from './CartList';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import { clearCart } from '../redux/features/CartSlice';
 
 export default function CartComponent() {
-  let { products, total, checkout } = useContext(CartContext);
+  let { cartItems: products, total } = useAppSelector(state => state.cart)
+  let dispatch = useAppDispatch();
   return (
     <Container>
       {
@@ -19,7 +22,7 @@ export default function CartComponent() {
       <div className='row'>
         <div className='col-md-10'>&nbsp;</div>
         <div className='col-md-2'>
-          <Button onClick={() => checkout()}>Checkout</Button>
+          <Button onClick={() => dispatch(clearCart())}>Checkout</Button>
         </div>
       </div>
     </Container>

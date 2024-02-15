@@ -779,3 +779,86 @@ props.clearCart()
 npx create-react-app reduxapp
 
 reduxapp> npm i redux react-redux
+
+====
+
+ productapp ==> Context as State management
+ productapp --> state managment using Redux Toolkit
+
+ Opinionated --> Redux Devtools is configured by default, Middleware like Thunk is also made available by default
+
+Redux --> we need to clone state --> mutate --> return new state
+
+RTK --> by default uses immerjs to make immutable collection
+
+productapp-redux> npm i @reduxjs/toolkit react-redux
+
+Steps:
+1) convert CartContext --> RTK
+a) Remove cartReducer.ts
+b) remove CartContext.tsx
+c) remove reference of CartContext in index.tsx, ProductCard.tsx, CartComponent.tsx
+
+====
+
+```
+const slice = createSlice({
+  name: 'test',
+  initialState: 0,
+  reducers: {
+    increment: (state, action: PayloadAction<number>) => state + action.payload,
+    decrement: (state) => state - 1 ,
+    clear: () => 0
+  },
+})
+
+```
+
+
+function add(x: number,y: number) {
+  return x + y;
+}
+
+
+type AType = ReturnType<typeof add>
+
+Atype will be a number
+
+let x:Atype = add(5,6);
+
+connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
+
+React redux hooks:
+useSelector()
+The selector is approximately equivalent to the mapStateToProps argument to connect conceptually.
+
+Example:
+let {cartItems} = useSelector(state => state.cart.cartItems);
+{
+  cartItems.map(...)
+}
+
+useDispatch()
+this is approximately equivalent to the mapDispatchToProps argument to connect conceptually.
+
+let dispatch = useDispatch();
+
+dispatch(addToCart(...));
+
+===
+ProductContext ==> Redux 
+Yes if we need Caching / pre-fetching / pooling 
+
+middleware Redux
+
+========
+
+
+
+
+
+
+

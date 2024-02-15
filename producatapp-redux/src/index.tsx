@@ -6,17 +6,19 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ProductProvider from './context/ProductContext';
 import { BrowserRouter } from 'react-router-dom'
-import CartProvider from './context/CartContext';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <ProductProvider>
-      <CartProvider>
+    <Provider store={store}>
+      <ProductProvider>
         <App />
-      </CartProvider>
-    </ProductProvider>
+      </ProductProvider>
+    </Provider>
   </BrowserRouter>
 );
 
